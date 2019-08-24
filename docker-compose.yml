@@ -8,6 +8,7 @@ services:
             - '25575'
         volumes:
             - mc:/data
+            - ./restore:/restore:ro
         environment:
             EULA: "TRUE"
             MAX_MEMORY: 3G

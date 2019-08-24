@@ -29,6 +29,7 @@ services:
             RCON_HOST: mc
         env_file:
             - minecraft.env
+        restart: always
 
 volumes:
     mc:

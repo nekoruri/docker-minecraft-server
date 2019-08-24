@@ -12,6 +12,7 @@ services:
             EULA: "TRUE"
             MAX_MEMORY: 3G
             ENABLE_RCON: "true"
+            VERSION: "1.14.4"
         env_file:
             - minecraft.env
         restart: always

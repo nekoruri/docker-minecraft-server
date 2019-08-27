@@ -13,10 +13,16 @@ services:
             EULA: "TRUE"
             MAX_MEMORY: 3G
             ENABLE_RCON: "true"
-            VERSION: "1.14.4"
+            VERSION: "1.15.2"
         env_file:
             - minecraft.env
         restart: always
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: "localhost:24224"
+                fluentd-async-connect: "true"
+                tag: "docker.{{.Name}}"
 
     backup:
         build: https://github.com/nekoruri/docker-mc-backup.git
@@ -30,7 +36,25 @@ services:
         env_file:
             - minecraft.env
         restart: always
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: "localhost:24224"
+                fluentd-async-connect: "true"
+                tag: "docker.{{.Name}}"
+
+    fluentd:
+        build:
+            context: ./fluentd/
+        ports:
+            - 24224:24224
+        volumes:
+            - fluentd_buffer:/fluentd/buffer:rw
+        env_file:
+            - minecraft.env
+        restart: always
 
 volumes:
     mc:
     backups:
+    fluentd_buffer:

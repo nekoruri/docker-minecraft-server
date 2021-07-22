@@ -25,7 +25,7 @@ services:
                 tag: "docker.{{.Name}}"
 
     backup:
-        build: https://github.com/nekoruri/docker-mc-backup.git
+        image: nekoruri/mc-backup
         volumes:
             - mc:/data:ro
             - backups:/backups

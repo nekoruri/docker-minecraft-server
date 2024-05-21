@@ -1,7 +1,7 @@
 version: '3'
 services:
     mc:
-        image: itzg/minecraft-server:java17
+        image: itzg/minecraft-server:java21
         ports:
             - 49357:25565
         expose:

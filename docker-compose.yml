@@ -25,14 +25,16 @@ services:
                 tag: "docker.{{.Name}}"
 
     backup:
-        image: nekoruri/mc-backup
+        image: itzg/mc-backup
         volumes:
             - mc:/data:ro
             - backups:/backups
+            - ./rclone.config:/config/rclone/rclone.conf:ro
         links:
             - mc
         environment:
             RCON_HOST: mc
+            PRUNE_BACKUPS_DAYS: -1
         env_file:
             - minecraft.env
         restart: always
